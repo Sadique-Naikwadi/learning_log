@@ -13,6 +13,20 @@ class Topic(models.Model):
         return self.title
 
 
+class Entry(models.Model):
+
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        
+        verbose_name_plural = 'Entries'
+
+    def __str__(self):
+
+        return f"self.text[:50]..."
+
 
     
 
