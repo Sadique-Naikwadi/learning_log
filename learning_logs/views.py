@@ -1,7 +1,7 @@
 from learning_logs.forms import TopicForm
 from django.shortcuts import render, redirect
 from .models import Topic
-from .forms import TopicForm
+from .forms import TopicForm, EntryForm
 
 
 # Create your views here.
@@ -49,4 +49,26 @@ def add_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
             
+
+def add_entrty(request, topic_id):
+
+    topic = Topic.objects.get(pk=topic_id)
+
+    if request.method != 'POST':
+        form = EntryForm()
+
+    else:
+
+        form = EntryForm(data=request.POST)
+
+        if form.is_valid():
+            new_enty = form.save(commit=False)
+            new_enty.topic = topic
+            new_enty.save()
+
+            return redirect('learning_logs:topic', topic_id=topic_id)
+
+        
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html', context)
 
