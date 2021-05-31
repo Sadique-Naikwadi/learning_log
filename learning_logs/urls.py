@@ -10,5 +10,6 @@ urlpatterns = [
     path('topics/<int:topic_id>/', views.topic, name='topic'),
     path('new_topic/', views.add_topic, name='new_topic'),
     path('new_entry/<int:topic_id>/', views.add_entrty, name='new_entry'),
+    path('edit_entry/<int:entry_id>/', views.update_entry, name='edit_entry'),
     
 ]

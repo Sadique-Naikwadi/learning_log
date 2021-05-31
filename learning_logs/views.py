@@ -1,6 +1,6 @@
 from learning_logs.forms import TopicForm
 from django.shortcuts import render, redirect
-from .models import Topic
+from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
 
@@ -72,3 +72,26 @@ def add_entrty(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
+
+
+def update_entry(request, entry_id):
+    
+    entry = Entry.objects.get(pk=entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        """ filled form with pre-filled data"""
+        form = EntryForm(instance=entry)
+
+    else:
+        """update form with current data and replace previous data"""
+        form = EntryForm(instance=entry, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('learning_logs:topic', topic_id=topic.id)
+
+        
+    context = {'entry':entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_entry.html', context)
