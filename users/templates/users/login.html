@@ -1,0 +1,19 @@
+
+{% if errors %}
+
+    <p>
+        Username and Password are invalid. Try again...
+    </p>
+    
+{% else %}
+    
+    <form action="{% url 'users:user_login' %}" method="POST">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Login">
+    </form>
+
+{% endif %}
+    
