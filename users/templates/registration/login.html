@@ -1,0 +1,27 @@
+{% extends 'learning_logs/base.html' %}
+
+
+{% block content %}
+    
+    
+    {% if forms.errors %}
+
+        <p>
+            Username and Password are invalid. Please try again.
+        </p>
+    {% endif %}
+
+    <form action="{% url 'users:login' %}" method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Login">
+        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" >
+
+    </form>
+        
+
+{% endblock content %}
+    
