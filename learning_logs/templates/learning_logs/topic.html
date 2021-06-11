@@ -2,30 +2,32 @@
 
 
 {% block content %}
+<div class="container">
+
     
-    <p> Topic: {{ topic }}</p>
+    <h3> Topic: {{ topic }}</h3>
 
-    <p>Entries:</p>
-    <a href=" {% url 'learning_logs:new_entry' topic.id %} ">Add New Entry</a>
+    <p class="lead">Entries:</p>
+    <a class="text-decoration-none btn btn-secondary mb-3" href=" {% url 'learning_logs:new_entry' topic.id %} ">Add New Entry</a>
 
-    <ul>
+    
         
         {% for entry in entries %}
 
-            <li>
-                <p> {{ entry.date_added|date:'M d, Y H:i' }}</p>
-                <p>{{ entry.text|linebreaks }}</p>
-                <p>
-                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit Entry</a>
-                </p>
-            </li>
+            <div class="card mb-3">
+                <h5 class="card-header">{{ entry.date_added|date:'M d, Y H:i' }}</h5>
+                <div class="card-body">
+                    <p class="card-text">{{ entry.text|linebreaks }}</p>
+                    <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="btn btn-primary">Edit Entry</a>
+                </div>
+            </div>
             
         {% empty %}
 
-            <p> There are no entries for these Topic yet.</p>
+            <p class="lead"> There are no entries for these Topic yet.</p>
             
         {% endfor %}
-            
-    </ul>
+</div>          
+    
 {% endblock content %}
     

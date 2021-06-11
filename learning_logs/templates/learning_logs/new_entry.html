@@ -2,21 +2,28 @@
 
 
 {% block content %}
+
+    <div class="container">
     
-    <p>
-        <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-    </p>
+            <p class="lead">
+                <a class="text-decoration-none" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+            </p>
 
-    <p>Add New Entry:</p>
+            <p class="lead">Add New Entry:</p>
 
-    <form action=" {% url 'learning_logs:new_entry' topic.id %} " method="POST">
+            <form action=" {% url 'learning_logs:new_entry' topic.id %} " method="POST">
 
-        {% csrf_token %}
+                {% csrf_token %}
 
-        {{ form.as_p }}
+                <div class="form-floating">
+                    <textarea name="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 120px"></textarea>
+                    
+                  </div>
+                <br>
 
-        <input type="submit" value="Add Entry">
+                <input class="btn btn-primary" type="submit" value=" Add Entry ">
 
-    </form>
+            </form>
+    </div>
 
 {% endblock content %}

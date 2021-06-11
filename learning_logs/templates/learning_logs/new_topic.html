@@ -2,16 +2,28 @@
 
 
 {% block content %}
+    <div class="container">
     
-    <p>Add New Topic</p>
+       
 
-    <form action="{% url 'learning_logs:new_topic' %}" method="POST">
+        <form action="{% url 'learning_logs:new_topic' %}" method="POST">
 
-        {% csrf_token %}
-        {{ form.as_p }}
+            {% csrf_token %}
+          
+            <div class="row">
+                <div class="col-md-5">
 
-        <input type="submit" value="Add Topic">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Add New Topic</label>
+                        <input type="text"  name="title" class="form-control" maxlength="200" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                    </div>
+                </div>
+            </div>
 
-    </form>
+            <input class="btn btn-primary" type="submit" value="Add Topic">
+
+        </form>
+    </div>
 {% endblock content %}
     

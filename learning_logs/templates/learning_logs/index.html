@@ -2,8 +2,16 @@
 
 
 {% block content %}
-    <p>
-        Learning Log helps you keep track of your learning, for any topic you're learning about.
-    </p>
+    <div class="container bg-light text-light p-5">
+        <div class="container bg-dark p-5">
+            <h1 class="display-4">Track your learning.</h1>
+            <hr>
+            <p class="lead">Make your own Learning Log, and keep a list of topics you're learning about.
+                whenever you learn something new about a topic,make an entry summarizing
+                what you've learned.
+            </p>
+            <a href="{% url 'users:register' %}" class="btn btn-primary">Register >></a>
+        </div>
+    </div>
 {% endblock content %}
     

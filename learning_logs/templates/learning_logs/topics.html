@@ -2,22 +2,24 @@
 
 
 {% block content %}
-    
-    <p>Topics</p>
+    <div class="container">
+        <p class="display-6">Topics</p>
 
-    <ul>
-        {% for topic in topics %}
+        <ul class="list-unstyled">
+            {% for topic in topics %}
 
-            <li><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></li>
+                <li><a  class="text-decoration-none link-info" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></li>
 
-        {% empty %}
+            {% empty %}
 
-            <p>No topic has been added yet.</p>
+                <p class="lead">No topic has been added yet.</p>
 
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
 
-    <a href=" {% url 'learning_logs:new_topic' %} ">Add a New Topic</a>
+        <a class="text-decoration-none btn btn-primary" href=" {% url 'learning_logs:new_topic' %} ">Add a New Topic  >></a>
+
+    </div>
 
 {% endblock content %}
     
