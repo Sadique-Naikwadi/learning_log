@@ -1,5 +1,5 @@
 from learning_logs.forms import TopicForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 from django.contrib.auth.decorators import login_required
@@ -24,7 +24,8 @@ def topics(request):
 def topic(request, topic_id):
     """ show single topic and all its entries"""
 
-    topic = Topic.objects.get(pk=topic_id)
+    #topic = Topic.objects.get(pk=topic_id)
+    topic = get_object_or_404(Topic, pk=topic_id)
 
     if topic.owner != request.user:
         raise Http404
@@ -60,7 +61,7 @@ def add_topic(request):
 @login_required
 def add_entry(request, topic_id):
 
-    topic = Topic.objects.get(pk=topic_id)
+    topic = get_object_or_404(Topic, pk=topic_id)
 
     if request.method != 'POST':
         form = EntryForm()
@@ -84,7 +85,8 @@ def add_entry(request, topic_id):
 @login_required
 def update_entry(request, entry_id):
     
-    entry = Entry.objects.get(pk=entry_id)
+    #entry = Entry.objects.get(pk=entry_id)
+    entry = get_object_or_404(Entry, pk=entry_id)
     topic = entry.topic
 
     if topic.owner != request.user:
