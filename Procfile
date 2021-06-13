@@ -1,0 +1,1 @@
+web: waitress-serve --port=$PORT learning_log.wsgi:application
