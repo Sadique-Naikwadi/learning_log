@@ -9,6 +9,10 @@ Every topic has it own set of entries.
 First you have to register in the application and then start adding topic and  its related entries.
 Every topic is owned by each individual user.
 
+## Technology Used
+
+Python 3.8.5 and Django Framework(3.0.4)
+
 ## Screenshots
 
 ![](https://github.com/Sadique-Naikwadi/learning_log/blob/master/docs/images/index.png)
